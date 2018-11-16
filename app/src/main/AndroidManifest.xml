@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.bqt.test">
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".EditActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".MyWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/><!--必须添加的action，否则不会出现在小部件的列表中-->
+                <action android:name="com.bqt.test.mywidget.onclick"/><!--自定义的action，用于在点击小部件上时发送的广播Action-->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/><!--下面这几个都是不必须的-->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE_OPTIONS"/>
+                <action android:name="android.appwidget.action.APPWIDGET_RESTORED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_DELETED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_app_widget_info"/>
+        </receiver>
+    </application>
+
+</manifest>
